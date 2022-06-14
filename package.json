@@ -1,0 +1,35 @@
+{
+  "name": "mern_for_me",
+  "version": "1.0.0",
+  "description": "Mern stack",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node app.js",
+    "dev": "nodemon app.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/frandrew90/mern_for_me.git"
+  },
+  "keywords": [
+    "mern"
+  ],
+  "author": "Andrew Frangu",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/frandrew90/mern_for_me/issues"
+  },
+  "homepage": "https://github.com/frandrew90/mern_for_me#readme",
+  "dependencies": {
+    "bcryptjs": "^2.4.3",
+    "config": "^3.3.7",
+    "express": "^4.18.1",
+    "express-validator": "^6.14.1",
+    "mongoose": "^6.3.6"
+  },
+  "devDependencies": {
+    "concurrently": "^7.2.1",
+    "nodemon": "^2.0.16"
+  }
+}
