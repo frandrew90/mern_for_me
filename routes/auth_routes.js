@@ -10,10 +10,14 @@ router.post(
   "/register",
   [
     check("email", "Incorrect email").isEmail(),
-    check("password", "Incorrect password").isLength({ min: 6 }),
+    check("password", "Incorrect password, min 6 symbols").isLength({ min: 6 }),
   ],
   async (req, res) => {
     try {
+      // console.log("====================================");
+      // console.log("body:", req.body);
+      // console.log("====================================");
+
       const errors = validationResult(req);
 
       if (!errors.isEmpty()) {
@@ -59,7 +63,7 @@ router.post(
       if (!errors.isEmpty()) {
         return res.status(400).json({
           errors: errors.array(),
-          message: "Incorrect sign in values",
+          message: "Incorrect sign-in values",
         });
       }
 

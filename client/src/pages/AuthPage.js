@@ -1,9 +1,16 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useHttp } from "../hooks/httpHook";
+import { useMessage } from "../hooks/messageHook";
 
 const AuthPage = () => {
-  const { loading, request, error } = useHttp();
+  const { loading, request, error, clearError } = useHttp();
   const [form, setForm] = useState({ email: "", password: "" });
+  const message = useMessage();
+
+  useEffect(() => {
+    message(error);
+    clearError();
+  }, [error, message, clearError]);
 
   const changeHandler = (event) => {
     setForm({ ...form, [event.target.name]: event.target.value });
@@ -12,9 +19,22 @@ const AuthPage = () => {
   const registerHandler = async () => {
     try {
       const data = await request("/api/auth/register", "POST", { ...form });
-      console.log("====================================");
-      console.log("data", data);
-      console.log("====================================");
+      // console.log("====================================");
+      // console.log("data", data);
+      // console.log("====================================");
+
+      message(data.message);
+    } catch (e) {}
+  };
+
+  const loginHandler = async () => {
+    try {
+      const data = await request("/api/auth/login", "POST", { ...form });
+      // console.log("====================================");
+      // console.log("data", data);
+      // console.log("====================================");
+
+      message(data.message);
     } catch (e) {}
   };
 
@@ -58,8 +78,9 @@ const AuthPage = () => {
               className="btn yellow darken-4"
               style={{ marginRight: 10 }}
               disabled={loading}
+              onClick={loginHandler}
             >
-              SignIn
+              Sign-In
             </button>
             <button
               className="btn grey lighten-1 black-text"
