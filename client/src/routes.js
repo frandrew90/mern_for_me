@@ -1,12 +1,14 @@
 import React from "react";
 import { Switch, Route, Redirect } from "react-router-dom";
 import AuthPage from "./pages/AuthPage";
-import CreatePage from "./pages/CreatePage";
 import DetailPage from "./pages/DetailPage";
 import LinksPage from "./pages/LinksPage";
+import CreatePage from "./pages/CreatePage";
 
-const routes = (isAuthenticated) => {
+const useRoutes = (isAuthenticated) => {
+  // debugger;
   if (isAuthenticated) {
+    // debugger;
     return (
       <Switch>
         <Route path="/links" exact>
@@ -25,7 +27,7 @@ const routes = (isAuthenticated) => {
       </Switch>
     );
   }
-
+  // debugger;
   return (
     <Switch>
       <Route path="/" exact>
@@ -37,4 +39,4 @@ const routes = (isAuthenticated) => {
   );
 };
 
-export default routes;
+export default useRoutes;

@@ -1,8 +1,10 @@
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
+import { AuthContext } from "../context/AuthContext";
 import { useHttp } from "../hooks/httpHook";
 import { useMessage } from "../hooks/messageHook";
 
 const AuthPage = () => {
+  const auth = useContext(AuthContext);
   const { loading, request, error, clearError } = useHttp();
   const [form, setForm] = useState({ email: "", password: "" });
   const message = useMessage();
@@ -33,6 +35,8 @@ const AuthPage = () => {
       // console.log("====================================");
       // console.log("data", data);
       // console.log("====================================");
+
+      auth.login(data.token, data.userId);
 
       message(data.message);
     } catch (e) {}
